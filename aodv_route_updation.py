@@ -11,7 +11,6 @@ def updateallexcept(index_pointer,node_index):
 
 nNodes=10
 route=np.genfromtxt('/home/mishfad/Documents/NS-3/ns-allinone-3.25/ns-3.25/first_routing.txt',delimiter=',',dtype=str)
-
 route_shape=route.shape
 
 ################################################################################################
