@@ -9,8 +9,9 @@ def updateallexcept(index_pointer,node_index):
 
 
 
-nNodes=10
+nNodes=5
 route=np.genfromtxt('/home/mishfad/Documents/NS-3/ns-allinone-3.25/ns-3.25/first_routing.txt',delimiter=',',dtype=str)
+
 route_shape=route.shape
 
 ################################################################################################
@@ -221,7 +222,7 @@ len_mob=len(time_mob)
 # Combining both
 ##############################################################################################
 
-index_route=0
+index_route=1
 index_mob=0
 index_final=0
 print "lens",len_route,len_mob
@@ -245,11 +246,18 @@ print "Node route: ",ntemp
 #print index_mob
 print x_plot[index_mob+1,:]
 
+
+
+#########################################################################################
+# 	Plotting
+#########################################################################################
+
+
 pl.ion()
 fig,ax=pl.subplots()
 
 while (index_route<len_route)|(index_mob<len_mob):
-	if (time_mob[index_mob]>node_route[index_route,0]):
+	if (time_mob[index_mob+1]>node_route[index_route,0]):
 	# route updation
 		col_route=1
 		while node_route[index_route,col_route]!=-1:
@@ -259,7 +267,7 @@ while (index_route<len_route)|(index_mob<len_mob):
 #		print "Route updation at "+str(index_mob)+" "+str(time_plot[index_mob])
 		index_route+=1
 
-	elif (time_mob[index_mob]<node_route[index_route,0]):
+	elif (time_mob[index_mob+1]<node_route[index_route,0]):
 	# position updation
 		index_mob+=1
 		pl.title("Position updation at "+str(time_plot[index_mob]))
@@ -268,7 +276,7 @@ while (index_route<len_route)|(index_mob<len_mob):
 	else:
 		print "TIme equal"
 
-	pl.scatter(x_plot[index_mob],y_plot[index_mob])
+	pl.scatter(x_plot[index_mob],y_plot[index_mob],s=20)
 	for i, txt in enumerate(n):
 	        pl.annotate(txt,(x_plot[index_mob, i],y_plot[index_mob, i]))
 # make axis labels
